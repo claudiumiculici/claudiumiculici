@@ -20,9 +20,74 @@ public class LoginTest extends Hooks {
         wait = new WebDriverWait(driver, 10);
     }
 
-    @Test
-    public void loginTest() throws InterruptedException {
+    @Test(description = "This test attempts to log in the first user.")
+    public void PositiveLoginTest() throws InterruptedException {
+        loginPage.FirstAccountPositiveLogin();
+        assertEquals("dino", loginPage.GetFirstAccountName().getText());
+        Thread.sleep(3000);
+    }
 
+    @Test(description = "This test attempts to log in without the username.")
+    public void FirstNegativeLoginTest() throws InterruptedException {
+        loginPage.FillLoginDetailsExceptUserName();
+        assertEquals("Please fill in the username!", loginPage.GetLoginErrorMessage().getText());
+        Thread.sleep(3000);
+    }
+
+    @Test(description = "This test attempts to log in without the password.")
+    public void SecondNegativeLoginTest() throws InterruptedException {
+        loginPage.FillLoginDetailsExceptPassword();
+        assertEquals("Please fill in the password!", loginPage.GetLoginErrorMessage().getText());
+        Thread.sleep(3000);
+    }
+
+    @Test(description = "This test attempts to log in the second user.")
+    public void SecondUserPostiveLoginTest() throws InterruptedException {
+        loginPage.SecondAccountPositiveLogin();
+        assertEquals("beetle", loginPage.GetSecondAccountName().getText());
+        Thread.sleep(3000);
+    }
+
+    @Test(description = "This test attempts to log in the second user without the username.")
+    public void SecondUserFirstNegativeLoginTest() throws InterruptedException {
+        loginPage.SecondAccountLoginNegativeTest1();
+        assertEquals("Please fill in the username!", loginPage.GetLoginErrorMessage().getText());
+        Thread.sleep(3000);
+    }
+
+    @Test(description = "This test attempts to log in the second user without the password.")
+    public void SecondUserSecondNegativeLoginTest() throws InterruptedException {
+        loginPage.SecondAccountLoginNegativeTest2();
+        assertEquals("Please fill in the password!", loginPage.GetLoginErrorMessage().getText());
+        Thread.sleep(3000);
+    }
+
+    @Test(description = "This test attempts to log in the third user.")
+    public void ThirdUserPostiveLoginTest() throws InterruptedException {
+        loginPage.ThirdAccountPositiveLogin();
+        assertEquals("turtle", loginPage.GetThirdAccountName().getText());
+        Thread.sleep(3000);
+    }
+
+    @Test(description = "This test attempts to log in the third user without the username.")
+    public void ThirdUserFirstNegativeLoginTest() throws InterruptedException {
+        loginPage.ThirdAccountNegativeLoginTest1();
+        assertEquals("Please fill in the username!", loginPage.GetLoginErrorMessage().getText());
+        Thread.sleep(3000);
+    }
+
+    @Test(description = "This test attempts to log in the third user without the password.")
+    public void ThirdUserSecondNegativeLoginTest() throws InterruptedException {
+        loginPage.ThirdAccountNegativeLoginTest2();
+        assertEquals("Please fill in the password!", loginPage.GetLoginErrorMessage().getText());
+        Thread.sleep(3000);
+    }
+
+    @Test(description = "This test attempts to log in the fourth user.")
+    public void FourthAccountLoginAttemptTest() throws InterruptedException {
+        loginPage.FourthAccountLoginAttempt();
+        assertEquals("The user has been locked out.", loginPage.GetLoginErrorMessage().getText());
+        Thread.sleep(3000);
     }
 
 }

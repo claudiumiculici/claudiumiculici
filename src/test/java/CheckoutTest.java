@@ -6,9 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
 import java.util.zip.Deflater;
-
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
